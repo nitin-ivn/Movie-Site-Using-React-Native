@@ -46,6 +46,7 @@ const DataProvider = ({children}) => {
             searchMovies,
             searchTerm,
             setSearchTerm,
+            setSearchMovies,
             fetchMovies,
             fetchSearchData,
             findMovieById,

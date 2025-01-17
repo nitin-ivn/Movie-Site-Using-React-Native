@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import MovieCard from '../../components/MovieCard'
 
 const search = () => {
-  const { searchMovies , fetchSearchData } = useContext(DataContext);
+  const { searchMovies , fetchSearchData, setSearchMovies } = useContext(DataContext);
   const [text, setText] = useState('');
   
   const handleInputChange = (inputText) => {
@@ -15,7 +15,7 @@ const search = () => {
   }
 
   const submitSearchTerm = () => {
-    console.log(text);
+    setSearchMovies([]);
     fetchSearchData(text);
   }
 
@@ -53,9 +53,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',  
     flexWrap: 'wrap',
+    gap: 10,
     justifyContent: 'space-between',  
   },
-  
+
   searchBtn: {
     padding: 5,
     paddingHorizontal: 10,

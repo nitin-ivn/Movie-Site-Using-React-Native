@@ -59,11 +59,11 @@ const DetailScreen = () => {
 
 const styles = StyleSheet.create({
   link: {
+    flex: 1,
     color: 'white',
     fontWeight: '400',
     fontSize: 17,
     textDecorationLine: 'underline',
-    maxWidth: 250
   },
 
   commonCon:{

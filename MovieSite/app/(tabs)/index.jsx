@@ -36,6 +36,7 @@ let styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',  
     flexWrap: 'wrap',
+    gap: 10,
     justifyContent: 'space-between',  
   },
   title:{
