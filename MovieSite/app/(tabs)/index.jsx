@@ -6,32 +6,28 @@ import Entypo from '@expo/vector-icons/build/Entypo'
 import Feather from '@expo/vector-icons/build/Feather'
 import Fontisto from '@expo/vector-icons/build/Fontisto'
 import { Link } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const app = () => {
   const {movies} = useContext(DataContext);
-  console.log(movies);
 
   return (
-    <View style = {{padding: 20}}>
-      <View style = {styles.topbar}>
-        <Entypo name="menu" size={24} color="white" />
-        <Fontisto name="netflix" size={24} color="red" />
-        <Link href='/search'>
-          <Feather style={styles.cursorPointer} name="search" size={24} color='white' />
-        </Link>
+    <SafeAreaView>
+      <View style = {{padding: 20}}>
+        <View style = {styles.topbar}>
+          <Entypo name="menu" size={24} color="white" />
+          <Fontisto name="netflix" size={24} color="red" />
+          <Link href='/search'>
+            <Feather style={styles.cursorPointer} name="search" size={24} color='white' />
+          </Link>
+        </View>
+        <View style={styles.grid}>
+          {movies.map((movie, index) => (
+          <MovieCard key={index} movie={movie} />
+        ))}
+        </View>
       </View>
-      {/* <FlatList  
-          data={movies}  
-          keyExtractor={(item) => item.show.id.toString()}  
-          renderItem={({ item }) => <MovieCard movie={item} />}  
-      /> */}
-
-      <View style={styles.grid}>
-        {movies.map((movie, index) => (  
-        <MovieCard key={index} movie={movie} />  
-      ))}
-      </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

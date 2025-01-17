@@ -3,6 +3,7 @@ import { useLocalSearchParams } from 'expo-router'
 import React,{useContext} from 'react'
 import { DataContext } from '../../context/DataContext.js'
 import noimage from '../../../assets/images/noimage.jpeg'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const DetailScreen = () => {
   const {findMovieById} = useContext(DataContext)
@@ -20,42 +21,39 @@ const DetailScreen = () => {
   }
   
     return (
-    <View>
-      <View style = {styles.imgContainer}>
-        <Image source={{uri: movie.show?.image?movie.show.image.original: noimage.uri}}
-        style={styles.img}/>
-      </View>
-
-      <View style={{padding: 15, paddingStart: 20}}>
-        <View style= {styles.detail}>
-          <View style={{flex: 1, flexDirection: 'row', gap: 5}}>
-            <Text style={styles.info}>{movie.show?.premiered?movie.show.premiered.slice(0, 4):'0000'}</Text>
-            <Text style={styles.info}>{movie.show.network?.country? movie.show.network.country.name:noCountry}</Text>
+    <SafeAreaView>
+      <View>
+        <View style = {styles.imgContainer}>
+          <Image source={{uri: movie.show?.image?movie.show.image.original: noimage.uri}}
+          style={styles.img}/>
+        </View>
+        <View style={{padding: 15, paddingStart: 20}}>
+          <View style= {styles.detail}>
+            <View style={{flex: 1, flexDirection: 'row', gap: 5}}>
+              <Text style={styles.info}>{movie.show?.premiered?movie.show.premiered.slice(0, 4):'0000'}</Text>
+              <Text style={styles.info}>{movie.show.network?.country? movie.show.network.country.name:noCountry}</Text>
+            </View>
+            <Text style={styles.info}>{convertToHoursAndMinutes(movie.show.averageRuntime)}</Text>
           </View>
-          <Text style={styles.info}>{convertToHoursAndMinutes(movie.show.averageRuntime)}</Text>
-        </View>
-
-        <View style={{marginTop: 5,display:'flex',flexDirection:'row'}}>
-          <Text style={styles.info}>Genre: </Text>
-          <Text style={styles.font}>{movie.show.genres.join(', ')}</Text>
-        </View>
-
-        <View style={{marginTop: 10}}>
-          <Text style={styles.title}>{movie.show.name}</Text>
-          <Text style={styles.summary}>{movie.show.summary.replace(/<\/?p>|<\/?b>|\u003Cp/g, '')}</Text>
-        </View>
-
-        <View style={styles.commonCon}>
-          <Text style={styles.info}>Rating: </Text>
-          <Text style={styles.font}>{movie.show.rating?.average?movie.show.rating?.average: 'No Rating'}</Text>
-        </View>
-
-        <View style={styles.commonCon}>
-          <Text style={styles.info}>TvMaze: </Text>
-          <Text style={styles.link}>{movie.show.url}</Text>
+          <View style={{marginTop: 5,display:'flex',flexDirection:'row'}}>
+            <Text style={styles.info}>Genre: </Text>
+            <Text style={styles.font}>{movie.show.genres.join(', ')}</Text>
+          </View>
+          <View style={{marginTop: 10}}>
+            <Text style={styles.title}>{movie.show.name}</Text>
+            <Text style={styles.summary}>{movie.show.summary.replace(/<\/?p>|<\/?b>|\u003Cp/g, '')}</Text>
+          </View>
+          <View style={styles.commonCon}>
+            <Text style={styles.info}>Rating: </Text>
+            <Text style={styles.font}>{movie.show.rating?.average?movie.show.rating?.average: 'No Rating'}</Text>
+          </View>
+          <View style={styles.commonCon}>
+            <Text style={styles.info}>TvMaze: </Text>
+            <Text style={styles.link}>{movie.show.url}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

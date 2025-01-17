@@ -19,7 +19,7 @@ const MovieCard = ({movie}) => {
 let styles = StyleSheet.create({
     card: {
         width: 100,
-        height: 180,
+        height: 200,
     }
 })
 

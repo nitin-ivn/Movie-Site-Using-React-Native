@@ -20,15 +20,19 @@ const DataProvider = ({children}) => {
     const fetchSearchData = async (search_term) => {
         try{
             const response = await fetch(`https://api.tvmaze.com/search/shows?q=${search_term}`)
-            const result = response.json();
-            setSearchMovies(result.data || {});
+            const result = await response.json();
+            setSearchMovies(result || []);
+            console.log(result);
         } catch(e){
             console.error(e);
         }
     }
 
     const findMovieById = (id) => {
-       return movies.find(movie => movie.show.id === Number(id) || null);
+        const movie = searchMovies.length > 0
+        ? searchMovies.find(movie => movie.show.id === Number(id))
+        : movies.find(movie => movie.show.id === Number(id));
+        return movie || null;
     }
 
     useEffect(() => {
