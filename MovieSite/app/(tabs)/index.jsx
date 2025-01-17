@@ -20,16 +20,28 @@ const app = () => {
           <Feather style={styles.cursorPointer} name="search" size={24} color='white' />
         </Link>
       </View>
-      <FlatList  
+      {/* <FlatList  
           data={movies}  
           keyExtractor={(item) => item.show.id.toString()}  
           renderItem={({ item }) => <MovieCard movie={item} />}  
-      />
+      /> */}
+
+      <View style={styles.grid}>
+        {movies.map((movie, index) => (  
+        <MovieCard key={index} movie={movie} />  
+      ))}
+      </View>
     </View>
   )
 }
 
 let styles = StyleSheet.create({
+  grid: {  
+    paddingTop: 10,
+    flexDirection: 'row',  
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',  
+  },
   title:{
     color: 'white',
     textAlign: 'center',

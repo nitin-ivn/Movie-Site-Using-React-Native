@@ -105,13 +105,15 @@ const styles = StyleSheet.create({
 
   imgContainer: {
     width: '100%',
+    maxWidth: 500,
     height: 400,
   },
 
   img: {
     minWidth: '100%',
     height: '100%',
-    resizeMode: 'stretch'
+    resizeMode: 'stretch',
+    marginHorizontal: 'auto'
   },
 })
 
