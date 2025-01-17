@@ -9,6 +9,7 @@ import MovieCard from '../../components/MovieCard'
 const search = () => {
   const { searchMovies , fetchSearchData, setSearchMovies } = useContext(DataContext);
   const [text, setText] = useState('');
+  const [selected, setSelected] = useState(false);
   
   const handleInputChange = (inputText) => {
     setText(inputText);
@@ -16,6 +17,7 @@ const search = () => {
 
   const submitSearchTerm = () => {
     setSearchMovies([]);
+    setSelected(true);
     fetchSearchData(text);
   }
 
@@ -35,12 +37,12 @@ const search = () => {
         </View>
         
         <View style={styles.grid}>
-          {searchMovies.length > 0 ? (
-              searchMovies.map((movie) => (
-                  <MovieCard key={movie.show.id} movie={movie} />
-              ))
+          {selected && searchMovies.length === 0 ? (
+            <Text style={{ color: 'white', textAlign: 'center' }}>No Movie Found</Text>
           ) : (
-              <Text>No Movie Found</Text>
+            searchMovies.map((movie) => (
+              <MovieCard key={movie.show.id} movie={movie} />
+            ))
           )}
         </View>
       </View>
